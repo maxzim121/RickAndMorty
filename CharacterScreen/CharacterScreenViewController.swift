@@ -1,8 +1,12 @@
-//
-//  CharacterScreenViewController.swift
-//  RickAndMorty
-//
-//  Created by Maksim Zimens on 05.10.2024.
-//
+import UIKit
 
-import Foundation
+final class CharacterScreenViewController: UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = .orange
+        
+    }
+    
+}
