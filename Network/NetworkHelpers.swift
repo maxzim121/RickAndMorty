@@ -3,11 +3,23 @@ import UIKit
 extension URLRequest {
     static func makeHTTPRequest(
         httpMethod: String,
-        baseURL: URL = URL(string: "https://rickandmortyapi.com/api/character/?page=1")!
+        baseURLString: String = "https://rickandmortyapi.com/api/character/",
+        requestType: Request,
+        id: Int
     ) -> URLRequest {
-        var request = URLRequest(url: baseURL)
-        request.httpMethod = httpMethod
-        return request
+        switch requestType {
+        case .character:
+            let baseURL = URL(string: baseURLString + String(id))!
+            var request = URLRequest(url: baseURL)
+            request.httpMethod = httpMethod
+            return request
+        case .page:
+            let baseURL = URL(string: baseURLString)!
+            var request = URLRequest(url: baseURL)
+            request.addValue(String(id), forHTTPHeaderField: "page")
+            request.httpMethod = httpMethod
+            return request
+        }
     }
 }
 
@@ -15,6 +27,11 @@ enum NetworkError: Error {
     case httpStatusCode(Int)
     case urlRequestError(Error)
     case urlSessionError
+}
+
+enum Request {
+    case page
+    case character
 }
 
 extension URLSession {
