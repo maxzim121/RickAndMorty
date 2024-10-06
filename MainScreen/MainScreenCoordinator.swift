@@ -17,7 +17,7 @@ final class MainScreenCoordinator: BaseCoordinator {
 
 private extension MainScreenCoordinator {
     func showMainScreen() {
-        let viewController = MainScreenViewController(coordinator: self)
+        let viewController = MainScreenViewController()
         navigationController.pushViewController(viewController, animated: true)
     }
     
