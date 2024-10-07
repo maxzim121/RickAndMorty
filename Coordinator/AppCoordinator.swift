@@ -2,7 +2,7 @@ import UIKit
 
 final class AppCoordinator: BaseCoordinator {
     override func start() {
-        showMainFlow()
+        showCharacterFlow()
     }
 
     override func finish() {
@@ -18,6 +18,15 @@ private extension AppCoordinator {
         )
         addChild(mainCoordinator)
         mainCoordinator.start()
+    }
+    
+    func showCharacterFlow() {
+        let characterCoordinator = CharacterScreenCoordinator(
+            finishDelegate: self,
+            navigationController: navigationController
+        )
+        addChild(characterCoordinator)
+        characterCoordinator.start()
     }
 }
 

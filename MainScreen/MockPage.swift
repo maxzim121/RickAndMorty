@@ -1,2 +1,0 @@
-let mockResults = [Results(id: 1, name: "Rick", gender: "Male", image: "https://rickandmortyapi.com/api/character/avatar/821.jpeg"), Results(id: 2, name: "Morty", gender: "Male", image: "https://rickandmortyapi.com/api/character/avatar/822.jpeg"), Results(id: 3, name: "Java", gender: "Female", image: "https://rickandmortyapi.com/api/character/avatar/822.jpeg")]
-let mockData = PageResponse(info: Info(count: 3, pages: 3, next: nil, prev: nil), results: mockResults)
