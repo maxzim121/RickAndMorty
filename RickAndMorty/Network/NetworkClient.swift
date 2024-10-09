@@ -1,4 +1,4 @@
-import UIKit
+import Foundation
 
 typealias PageResponseCompletion = (Result<PageResponse, Error>) -> Void
 typealias CharacterResponseCompletion = (Result<CharacterResponseStruct, Error>) -> Void

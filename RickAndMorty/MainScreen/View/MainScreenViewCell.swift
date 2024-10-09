@@ -3,15 +3,15 @@ import Kingfisher
 
 final class MainScreenViewCell: UICollectionViewCell {
     
+    // MARK: - Private variables
+    
     private(set) var characterId: Int?
     
-    private lazy var nameLabel: UILabel = {
-        var nameLabel = UILabel()
-        nameLabel.numberOfLines = 0
-        nameLabel.font = UIFont(name: "Chalkduster", size: 20)
-        nameLabel.textColor = .white
-        return nameLabel
-    }()
+    // MARK: - UI components
+    
+    private lazy var nameLabel = UILabel.createCustomLabel(fontSize: 20, textColor: .white)
+    
+    private lazy var genderLabel = UILabel.createCustomLabel(fontSize: 16, textColor: .white)
     
     private lazy var imageView: UIImageView = {
         var imageView = UIImageView()
@@ -24,13 +24,7 @@ final class MainScreenViewCell: UICollectionViewCell {
         return greenView
     }()
     
-    private lazy var genderLabel: UILabel = {
-        var genderLabel = UILabel()
-        genderLabel.numberOfLines = 0
-        genderLabel.font = UIFont(name: "Chalkduster", size: 16)
-        genderLabel.textColor = .white
-        return genderLabel
-    }()
+    // MARK: - Lifecycle
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -39,6 +33,8 @@ final class MainScreenViewCell: UICollectionViewCell {
         nameLabel.text = nil
         genderLabel.text = nil
     }
+    
+    // MARK: - Initialisation
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -52,7 +48,9 @@ final class MainScreenViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupConstraints() {
+    // MARK: - Private methods
+    
+    private func setupConstraints() {
         [nameLabel, imageView, genderLabel, greenView].forEach {
             contentView.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -78,6 +76,8 @@ final class MainScreenViewCell: UICollectionViewCell {
             genderLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
         ])
     }
+    
+    // MARK: - Public methods
     
     func setupCellContent(item: Results) {
         characterId = item.id

@@ -4,18 +4,25 @@ final class MainScreenViewModel {
     
     weak var coordinator: MainScreenCoordinator?
     
+    // MARK: - Private variables
+    
     private var pageItems: [Results] = []
-    
     private var pageNumber = 1
-    
     private var networkClient: NetworkClient
+    
+    // MARK: - Closures
+    
     var onDataLoaded: (([Results]) -> Void)?
     var onError: ((String) -> Void)?
+    
+    // MARK: - Initialisation
     
     init(coordinator: MainScreenCoordinator?, network: NetworkClient) {
         self.coordinator = coordinator
         self.networkClient = network
     }
+    
+    // MARK: - Public methods
     
     func fetchPage() {
         networkClient.fetchPage(pageId: pageNumber) { [weak self] result in

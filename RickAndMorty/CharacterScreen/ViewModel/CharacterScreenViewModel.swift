@@ -1,20 +1,24 @@
 import Foundation
 final class CharacterScreenViewModel {
     
-    var characterId: Int
-    
     let networkClient: NetworkClient
     
-    weak var coordinator: CharacterScreenCoordinator?
+    // MARK: - Public variables
     
+    weak var coordinator: CharacterScreenCoordinator?
+    var characterId: Int
     var onDataLoaded: ((CharacterResponseStruct) -> Void)?
     var onError: ((String) -> Void)?
+    
+    // MARK: - Initialisation
     
     init(characterId: Int, coordinator: CharacterScreenCoordinator, networkClient: NetworkClient) {
         self.characterId = characterId
         self.coordinator = coordinator
         self.networkClient = networkClient
     }
+    
+    // MARK: - Public methods
     
     func fetchCharacter() {
         networkClient.fetchCharacter(id: characterId) { [weak self] result in
