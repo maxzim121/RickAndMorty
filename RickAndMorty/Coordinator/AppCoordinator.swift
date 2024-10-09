@@ -2,7 +2,7 @@ import UIKit
 
 final class AppCoordinator: BaseCoordinator {
     override func start() {
-        showCharacterFlow()
+        showMainFlow()
     }
 
     override func finish() {

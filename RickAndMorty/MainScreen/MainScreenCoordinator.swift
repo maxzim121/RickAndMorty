@@ -10,22 +10,26 @@ final class MainScreenCoordinator: BaseCoordinator {
         finishDelegate?.didFinish(self)
     }
     
-    func showNextScreen() {
-        showCharacterScreen()
+    func showNextScreen(id: Int, networkClient: NetworkClient) {
+        showCharacterScreen(id: id, networkClient: networkClient)
     }
 }
 
 private extension MainScreenCoordinator {
     func showMainScreen() {
-        let viewController = MainScreenViewController()
+        let networkClient = NetworkClient()
+        let viewModel = MainScreenViewModel(coordinator: self, network: networkClient)
+        let viewController = MainScreenViewController(viewModel: viewModel)
         navigationController.pushViewController(viewController, animated: true)
     }
     
-    func showCharacterScreen() {
+    func showCharacterScreen(id: Int, networkClient: NetworkClient) {
         let characterScreenCoordinator = CharacterScreenCoordinator(
             finishDelegate: self,
             navigationController: navigationController
         )
+        characterScreenCoordinator.networkClient = networkClient
+        characterScreenCoordinator.characterId = id
         addChild(characterScreenCoordinator)
         characterScreenCoordinator.start()
     }

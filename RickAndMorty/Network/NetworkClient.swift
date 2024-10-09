@@ -19,7 +19,6 @@ final class NetworkClient {
                     completion(.success(page))
                 case .failure(let error):
                     completion(.failure(error))
-                    assertionFailure("\(error)")
                 }
             }
         }
@@ -36,7 +35,6 @@ final class NetworkClient {
                     completion(.success(page))
                 case .failure(let error):
                     completion(.failure(error))
-                    assertionFailure("\(error)")
                 }
             }
         }
