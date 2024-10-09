@@ -5,6 +5,8 @@ final class CharacterScreenViewController: UIViewController {
     
     var viewModel: CharacterScreenViewModel
     
+    // MARK: - UI components
+    
     private lazy var loadingLabel = UILabel.createCustomLabel(
         text: "Loading...",
         fontSize: 30,
@@ -81,13 +83,9 @@ final class CharacterScreenViewController: UIViewController {
     )
     
     private lazy var genderStackView = UIStackView.createCustomStack(views: [genderLabel, gender])
-    
     private lazy var statusStackView = UIStackView.createCustomStack(views: [statusLabel, status])
-    
     private lazy var specieStackView = UIStackView.createCustomStack(views: [specieLabel, specie])
-    
     private lazy var originStackView = UIStackView.createCustomStack(views: [originLabel, origin])
-    
     private lazy var lastLocationStackView = UIStackView.createCustomStack(views: [lastLocationLabel, lastLocation])
 
     private lazy var backButton: UILabel = {
@@ -107,6 +105,8 @@ final class CharacterScreenViewController: UIViewController {
         return greenSeparator
     }()
     
+    // MARK: - Initialisation
+    
     init(viewModel: CharacterScreenViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -115,6 +115,8 @@ final class CharacterScreenViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -125,7 +127,9 @@ final class CharacterScreenViewController: UIViewController {
         viewModel.fetchCharacter()
     }
     
-    func setupConstraints() {
+    // MARK: - Private methods
+    
+    private func setupConstraints() {
         [imageView, name, statusStackView, specieStackView, genderStackView, backButton, greenSeparator, lastLocationStackView, originStackView, loadingLabel].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -177,7 +181,7 @@ final class CharacterScreenViewController: UIViewController {
         ])
     }
     
-    func setupComponents(item: CharacterResponseStruct) {
+    private func setupComponents(item: CharacterResponseStruct) {
         name.adjustsFontSizeToFitWidth = true
         name.numberOfLines = 1
         name.text = item.name
@@ -196,7 +200,7 @@ final class CharacterScreenViewController: UIViewController {
         loadingLabel.isHidden = true
     }
     
-    func binding() {
+    private func binding() {
         viewModel.onDataLoaded = { [weak self] result in
             guard let self = self else { return }
             DispatchQueue.main.async {
@@ -223,7 +227,9 @@ final class CharacterScreenViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    @objc func backButtonTapped() {
+    // MARK: - Objc methods
+    
+    @objc private func backButtonTapped() {
         viewModel.backButtonTapped()
     }
     
