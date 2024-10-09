@@ -14,9 +14,10 @@ extension URLRequest {
             request.httpMethod = httpMethod
             return request
         case .page:
-            let baseURL = URL(string: baseURLString)!
-            var request = URLRequest(url: baseURL)
-            request.addValue(String(id), forHTTPHeaderField: "page")
+            var components = URLComponents(string: baseURLString)!
+            components.queryItems = [URLQueryItem(name: "page", value: String(id))]
+            let url = components.url!
+            var request = URLRequest(url: url)
             request.httpMethod = httpMethod
             return request
         }

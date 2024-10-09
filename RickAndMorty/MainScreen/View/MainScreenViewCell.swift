@@ -3,6 +3,8 @@ import Kingfisher
 
 final class MainScreenViewCell: UICollectionViewCell {
     
+    private(set) var characterId: Int?
+    
     private lazy var nameLabel: UILabel = {
         var nameLabel = UILabel()
         nameLabel.numberOfLines = 0
@@ -29,6 +31,14 @@ final class MainScreenViewCell: UICollectionViewCell {
         genderLabel.textColor = .white
         return genderLabel
     }()
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        characterId = nil
+        imageView.image = nil
+        nameLabel.text = nil
+        genderLabel.text = nil
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -70,17 +80,12 @@ final class MainScreenViewCell: UICollectionViewCell {
     }
     
     func setupCellContent(item: Results) {
+        characterId = item.id
         nameLabel.text = item.name
         genderLabel.text = item.gender
         guard let url = URL(string: item.image) else { return }
         
         imageView.kf.indicatorType = .activity
-        imageView.kf.setImage(with: url) { result in
-            switch result {
-            case .success(let image):
-                print(image)
-            case .failure(let error):
-                print(error)            }
-        }
+        imageView.kf.setImage(with: url)
     }
 }
