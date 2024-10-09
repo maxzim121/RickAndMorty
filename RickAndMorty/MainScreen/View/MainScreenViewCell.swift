@@ -9,9 +9,17 @@ final class MainScreenViewCell: UICollectionViewCell {
     
     // MARK: - UI components
     
-    private lazy var nameLabel = UILabel.createCustomLabel(fontSize: 20, textColor: .white)
+    private lazy var nameLabel = UILabel.createCustomLabel(
+        fontSize: 20,
+        textColor: .white,
+        alignment: .left
+    )
     
-    private lazy var genderLabel = UILabel.createCustomLabel(fontSize: 16, textColor: .white)
+    private lazy var genderLabel = UILabel.createCustomLabel(
+        fontSize: 16,
+        textColor: .white,
+        alignment: .left
+    )
     
     private lazy var imageView: UIImageView = {
         var imageView = UIImageView()
