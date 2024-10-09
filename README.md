@@ -16,3 +16,4 @@
 - **Паттерны**: Dependency Injection
 - **API**: Rick and Morty REST API (https://rickandmortyapi.com/documentation/#rest)
 - **Пагинация**: Реализована с бесконечной прокруткой.
+- **Библиотеки**: Использован Kingfisher для обработки фотографий
